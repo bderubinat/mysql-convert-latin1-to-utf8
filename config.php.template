@@ -27,11 +27,5 @@ $collationMap =
 $dbHost = 'localhost';
 $dbName = '';
 $dbUser = '';
-$dbPass = '';
-
-if($dbPass == '') {
-    echo "DB password:";
-    $dbPass = trim(fgets(STDIN));
-};
-
+$dbPass = ''; // null to prompt user, '' for empty password
 
