@@ -49,7 +49,7 @@ if (file_exists('config.php')) {
     require_once('config.php');
 }
 
-if($dbPass == '') {
+if($dbPass === null) {
     echo "DB password:";
     $dbPass = trim(fgets(STDIN));
 };
@@ -61,7 +61,6 @@ foreach ($collationMap as $s => $t) {
 
 // Strip trailing comma
 $mapstring = substr($mapstring, 0, -1);
-echo $mapstring;
 
 // Open a connection to the information_schema database
 $infoDB = mysql_connect($dbHost, $dbUser, $dbPass);
@@ -229,8 +228,6 @@ sqlExec($infoDB, "ALTER DATABASE $dbName COLLATE $defaultCollation", $pretend);
  */
 function sqlExec($db, $sql, $pretend = false)
 {
-    echo "$sql;\n";
-
     if ($pretend === false) {
         $res = mysql_query($sql, $db);
 
